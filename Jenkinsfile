@@ -19,10 +19,10 @@ node{
          } */
         deploy adapters: [tomcat7(credentialsId: 'b8f3ff17-b0e2-4a81-ac84-279d5100fc18', path: '', url: 'http://52.66.245.56:8080/')], contextPath: null, onFailure: false, war: '**/maven-web-application.war'
     }
-    stage('Emailnotifiction'){
+   /* stage('Emailnotifiction'){
         emailext body: '''build over
 
 Regards
 kavya.''', subject: 'Build', to: 'kavya.sibbala@gmail.com'
-    }
+    }*/
 }
