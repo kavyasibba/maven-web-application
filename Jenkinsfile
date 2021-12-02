@@ -14,9 +14,10 @@ node{
         sh "${mavenHome}/bin/mvn clean package sonar:sonar deploy"
     }
     stage('DeployingToTomcat'){
-        sshagent(['87d2a06b-a94c-4540-b954-f51394359645']) {
+       /* sshagent(['87d2a06b-a94c-4540-b954-f51394359645']) {
         sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@52.66.245.56:/opt/apache-tomcat-9.0.54/webapps/"
-         }
+         } */
+        deploy adapters: [tomcat7(credentialsId: 'b8f3ff17-b0e2-4a81-ac84-279d5100fc18', path: '', url: 'http://52.66.245.56:8080/')], contextPath: null, onFailure: false, war: '**/maven-web-application.war'
     }
     stage('Emailnotifiction'){
         emailext body: '''build over
